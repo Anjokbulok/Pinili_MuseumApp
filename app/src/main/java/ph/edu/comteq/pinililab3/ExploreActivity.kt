@@ -65,16 +65,14 @@ fun Explore(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .background(Color.DarkGray)
-    )
-    {
-        Column (
+    ) {
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = modifier
                 .fillMaxSize()
                 .padding(40.dp)
-        )
-        {
+        ) {
             // Heading
             Text(
                 modifier = Modifier
@@ -87,7 +85,6 @@ fun Explore(modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.Bold
             )
 
-
             // Divider
             HorizontalDivider(Modifier, DividerDefaults.Thickness, color = Color.Gray)
 
@@ -97,9 +94,7 @@ fun Explore(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(vertical = 12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
-            )
-            {
-
+            ) {
                 Text(
                     "Upcoming Event",
                     color = Color.White,
@@ -107,28 +102,31 @@ fun Explore(modifier: Modifier = Modifier) {
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 22.sp
                 )
+
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.clickable {}
+                    modifier = Modifier.clickable {
+                        val intent = Intent(context, TicketingActivity::class.java)
+                        context.startActivity(intent)
+                    }
                 ) {
-                    //Ticket link
+                    // Ticket text
                     Text(
                         text = "Tickets",
                         color = Color.White,
                         fontFamily = playfairdisplayregular,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 22.sp
+                        fontSize = 18.sp
                     )
+
+                    // Chevron icon
                     Image(
                         painter = painterResource(id = R.drawable.chevron_right),
                         contentDescription = "chevron",
                         colorFilter = ColorFilter.tint(Color.White),
-                        modifier = Modifier
-                            .height(33.dp)
-
-
+                        modifier = Modifier.height(33.dp)
                     )
                 }
+
             }
 
             // Event Card
@@ -136,15 +134,13 @@ fun Explore(modifier: Modifier = Modifier) {
                 shape = RoundedCornerShape(12.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-            )
-            {
-                //Image
+            ) {
+                // Image
                 Image(
                     painter = painterResource(id = R.drawable.renaissance),
                     contentDescription = "Renaissance Exhibition",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-
                         .fillMaxWidth()
                         .height(300.dp)
                 )
@@ -154,22 +150,19 @@ fun Explore(modifier: Modifier = Modifier) {
                         .fillMaxWidth()
                         .background(Color(0xFF2E2E2E))
                         .padding(18.dp)
-                )
-                {
+                ) {
                     // Date
                     Column(
                         modifier = Modifier
                             .padding(top = 40.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
-                    )
-                    {
+                    ) {
                         Text(
                             "10",
                             color = Color.White,
                             fontWeight = FontWeight.Bold,
                             fontFamily = optima,
                             fontSize = 25.sp
-
                         )
 
                         Text(
@@ -184,9 +177,8 @@ fun Explore(modifier: Modifier = Modifier) {
                     Column(
                         modifier = Modifier
                             .padding(18.dp)
-                    )
-                    {
-                        //Event Title
+                    ) {
+                        // Event Title
                         Text(
                             "Renaissance Exhibition",
                             color = Color.White,
@@ -195,7 +187,7 @@ fun Explore(modifier: Modifier = Modifier) {
                             fontSize = 18.sp
                         )
                         Spacer(modifier = Modifier.height(4.dp))
-                        //time
+                        // Time
                         Text(
                             "9:00 AM - 6:00 PM",
                             color = Color.White,
@@ -203,7 +195,7 @@ fun Explore(modifier: Modifier = Modifier) {
                             fontSize = 18.sp
                         )
                         Spacer(modifier = Modifier.height(4.dp))
-                        //description
+                        // Description
                         Text(
                             "Indulge in the rich tapestry of Renaissance art",
                             color = Color(0xFFD4AF37),
@@ -212,7 +204,7 @@ fun Explore(modifier: Modifier = Modifier) {
                             textDecoration = TextDecoration.Underline,
                         )
                         Spacer(modifier = Modifier.height(4.dp))
-                        //contact
+                        // Contact
                         Text(
                             "+33 (0)1 23 45 67 89",
                             color = Color.White,
@@ -220,10 +212,8 @@ fun Explore(modifier: Modifier = Modifier) {
                             fontSize = 18.sp,
                             textDecoration = TextDecoration.Underline
                         )
-
                     }
                 }
-
 
                 // Visit Gallery button
                 Button(
@@ -238,21 +228,19 @@ fun Explore(modifier: Modifier = Modifier) {
                         containerColor = Color.Yellow
                     ),
 
-                )
-
-                 {
+                    ) {
                     Text(
                         "Visit Gallery",
                         color = Color.Black,
                         fontSize = 28.sp,
                         fontFamily = optima
                     )
-
                 }
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun ExplorePreview() {
