@@ -27,6 +27,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -68,6 +72,10 @@ fun Ticketing(modifier: Modifier = Modifier) {
             }
         }
     )
+    var generalAdmission by remember { mutableStateOf(0) }
+    var freeTickets by remember { mutableStateOf(0) }
+    val generalPrice = 500
+    val totalPrice = (generalAdmission * generalPrice)
    Column(
        modifier = modifier.background(Color.Black)
    ){
@@ -130,10 +138,36 @@ fun Ticketing(modifier: Modifier = Modifier) {
 
                     )
                 )
-                //general admission ticket
+                Column(modifier = Modifier.padding(top = 30.dp)) {
+                    Text(
+                        "2. Number of Tickets",
+                        fontSize = 26.sp,
+                        fontFamily = playfairdisplayregular,
+                        color = Color(0xFFF8B902),
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
 
-                //free tickets
+                    //general admission tickets
+                    TicketCounter(
+                        label = "General Admission",
+                        price = "₱500",
+                        count = generalAdmission,
+                        onIncrement = { generalAdmission++ },
+                        onDecrement = { if (generalAdmission > 0) generalAdmission-- }
+                    )
+
+                    //free tickets
+
+                    TicketCounter(
+                        label = "Under 18s, Under 26s\nresidents of the EEA,\nmuseum members, \nProfessionals",
+                        price = "FREE",
+                        count = freeTickets,
+                        onIncrement = { freeTickets++ },
+                        onDecrement = { if (freeTickets > 0) freeTickets-- }
+                    )
+                }
             }
+
         }
        //Button bar for Totals
        Row(
@@ -144,7 +178,7 @@ fun Ticketing(modifier: Modifier = Modifier) {
            verticalAlignment = Alignment.CenterVertically
        ){
            Text(
-               "Total: P500",
+               "Total: ₱$totalPrice",
                fontSize = 26.sp,
                fontFamily = playfairdisplayregular,
                color = Color.Black
@@ -165,6 +199,63 @@ fun Ticketing(modifier: Modifier = Modifier) {
            }
        }
    }
+}
+
+@Composable
+fun TicketCounter(
+    label: String,
+    price: String,
+    count: Int,
+    onIncrement: () -> Unit,
+    onDecrement: () -> Unit
+) {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(vertical = 10.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = label,
+                    fontSize = 18.sp,
+                    fontFamily = playfairdisplayregular,
+                    color = Color.White
+                )
+                Text(
+                    text = price,
+                    fontSize = 18.sp,
+                    fontFamily = playfairdisplayregular,
+                    color = Color(0xFFF8B902)
+                )
+            }
+            Row(verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    onClick = onDecrement,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
+                ) {
+                    Text("-", fontSize = 20.sp, color = Color(0xFFF8B902))
+                }
+                Text(
+                    text = count.toString(),
+                    fontSize = 20.sp,
+                    fontFamily = playfairdisplayregular,
+                    color = Color.White,
+                    modifier = Modifier.padding(horizontal = 12.dp)
+                )
+                Button(
+                    onClick = onIncrement,
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
+                ) {
+                    Text("+", fontSize = 20.sp, color = Color(0xFFF8B902))
+                }
+            }
+        }
+    }
 }
 
 
