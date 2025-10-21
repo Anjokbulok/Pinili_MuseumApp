@@ -120,7 +120,20 @@ object MockData {
         )
     )
 
-    val artists = listOf(leonardoDaVinci, michelangelo)
+    val gustavKlimt = Artist(
+        name = "Gustav Klimt",
+        years = "1862 - 1918",
+        avatarResId = R.drawable.gustav_klimt,
+        artworkNames = listOf("Adele Bloch-Bauer", "Lady with Fan", "The Kiss"),
+        artworkImageResIds = listOf(
+            R.drawable.adele_bloch_bauer,
+            R.drawable.lady_with_fan,
+            R.drawable.the_kiss
+        )
+    )
+
+
+    val artists = listOf(leonardoDaVinci, michelangelo, gustavKlimt)
 }
 
 fun loadArtworksFromJson(context: Context): List<Artwork> {

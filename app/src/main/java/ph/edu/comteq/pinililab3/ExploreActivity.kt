@@ -204,11 +204,7 @@ fun Explore(modifier: Modifier = Modifier) {
                             fontFamily = optima,
                             fontSize = 14.sp,
                             textDecoration = TextDecoration.Underline,
-                            modifier = Modifier.clickable {
-                                // redirect sa ArtistPage
-                                val intent = Intent(context, ArtistPage::class.java)
-                                context.startActivity(intent)
-                            }
+
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         // Contact
@@ -225,7 +221,7 @@ fun Explore(modifier: Modifier = Modifier) {
                 // Visit Gallery button
                 Button(
                     onClick = {
-                        val intent = Intent(context, MainActivity::class.java)
+                        val intent = Intent(context, ArtistPage::class.java)
                         context.startActivity(intent)
                     },
                     modifier = Modifier
