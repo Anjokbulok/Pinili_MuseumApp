@@ -345,7 +345,7 @@ fun ArtworkImage(resourceId: Int, onClick: () -> Unit) {
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .size(120.dp)
-            .clip(RoundedCornerShape(percent = 50))
+            .clip(RoundedCornerShape(12.dp)) // 👈 square image with slight rounding
             .clickable(onClick = onClick)
     )
 }
