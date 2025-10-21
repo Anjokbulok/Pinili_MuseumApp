@@ -196,12 +196,19 @@ fun Explore(modifier: Modifier = Modifier) {
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         // Description
+
+
                         Text(
                             "Indulge in the rich tapestry of Renaissance art",
                             color = Color(0xFFD4AF37),
                             fontFamily = optima,
                             fontSize = 14.sp,
                             textDecoration = TextDecoration.Underline,
+                            modifier = Modifier.clickable {
+                                // redirect sa ArtistPage
+                                val intent = Intent(context, ArtistPage::class.java)
+                                context.startActivity(intent)
+                            }
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         // Contact
